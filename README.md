@@ -2,7 +2,7 @@
 
 This project provides a structured approach to building functional data pipelines in Python, adhering to a defensible methodology and emphasizing readability in the style of literate programming but using code to "talk" whenever possible. It automates common data processing tasks according to a playbook of best practices for writing idiomatic, functional Python code.
 
-🎯 ### Key Principles:
+### 🎯 Key Principles:
 - Readability & Testability: The core logic is expressed as clear, idiomatic, functional Python code. This is achieved by isolating atomic functions from boilerplate, decorators, or other abstractions.
 - Immutability & Traceability: Every transformation and error is logged, ensuring a transparent audit trail from raw input to final output.
 - Automated Best Practices: Standardized patterns make it easy to maintain, extend, and integrate with existing workflows.
