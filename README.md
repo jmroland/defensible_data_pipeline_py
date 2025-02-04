@@ -7,6 +7,14 @@ This project provides a structured approach to building functional data pipeline
 - Immutability & Traceability: Every transformation and error is logged, ensuring a transparent audit trail from raw input to final output.
 - Automated Best Practices: Standardized patterns make it easy to maintain, extend, and integrate with existing workflows.
 
+The goal is for the pipeline to read like a pipeline, making its transformations explicit and intuitive:
+
+```transformation_one | transformation_two | transformation_three```
+
+Errors are propagated, lifted, and logged without interrupting execution, ensuring the pipeline continues processing while capturing all failures. Each data point maintains a complete lineage, tracking every transformation alongside any errors encountered.
+
+Data remains immutable—new columns are always created from transformations, preserving original values and ensuring full traceability.
+
 Designed for data engineers, analysts, and functional programmers, this pipeline structure offers a clean, reproducible, and error-traceable approach to data handling.
 
 
