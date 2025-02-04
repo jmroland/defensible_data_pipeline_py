@@ -60,6 +60,9 @@ def handle_row_errors(on_error: Callable[[str, str, Exception], None] = None, co
         def wrapper(row, *args, **kwargs):
             try:
                 return func(row, *args, **kwargs)
+            except ValidationError as e:
+                error_with_context = {f"{context} -> {key}": msg for key, msg in e.errors.items()}
+                raise ValidationError(error_with_context) from e
             except Exception as e:
                 if on_error and "row_id" in row:
                     on_error(row["row_id"], f"{func.__name__} (column: {column_name})", e)
