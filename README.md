@@ -1,6 +1,18 @@
 # 📌 Defensible Data Pipeline
 
-This project provides a structured approach to building functional data pipelines in Python, adhering to a defensible methodology and emphasizing readability in the style of literate programming but using code to "talk" whenever possible. It automates common data processing tasks according to a playbook of best practices for writing idiomatic, functional Python code.
+A library of functions that enable a structured approach to building functional data pipelines in Python.  
+
+The goal is to model a defensible approach to data processing, and emphasize readability in the style of literate programming but using code to "talk" whenever possible. 
+
+The result is a library of functions to automate common data processing tasks according to a playbook of best practices for writing idiomatic, functional Python code.
+
+#### Also included:
+- A draft playbook for functionaly, idiomatic python functions and data pipelines
+  - Link: [Playbook](#Functional-Programming-Playbook-for-Python-Pipelines)
+- Checklists for those who do not spend all day in python, including code review for functions, project setup, and validation.
+  - [Code Review for Function](review-checklist)
+  - [Project Setup](/docs/py_project_checklist.txt)
+  - Validation (PENDING)
 
 ### 🎯 Key Principles:
 - Readability & Testability: The core logic is expressed as clear, idiomatic, functional Python code. This is achieved by isolating atomic functions from boilerplate, decorators, or other abstractions.
@@ -155,7 +167,31 @@ Designed for data engineers, analysts, and functional programmers, this pipeline
 
 ---
 
-## **Final Notes**
-- Use **Step 1** to write functions and **Step 2** to review them.
-- Incorporate traceability, immutability, and error handling in every step.
-- Test all edge cases to ensure reliability.
+
+# Review Checklist
+
+### **Naming**
+- `filter_positive_growth`, not `fpg`.
+
+### **Type Annotations**
+- `def fn(df: pd.DataFrame) -> pd.DataFrame`, not `def fn(df)`.
+
+### **Single Responsibility**
+- `def calculate_mean(col):`, not `def calculate_and_filter(col, threshold)`.
+
+### **Immutability**
+- `df = df.copy()`, not `df["col"] = ...`.
+
+### **Validation**
+- `if "col" not in df.columns: raise KeyError`, not `df["col"].mean()`.
+
+### **Error Handling**
+- `try: fn(row) except KeyError: log_error(row_id)`, not `except Exception`.
+
+### **Traceability**
+- `df["row_id"] = uuid.uuid4()`, not overwriting indices.
+
+### **Testing**
+- `assert atomic_fn([1, 2, 3]) == 2`, not skipping edge cases like `[]`.
+
+---
