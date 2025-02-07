@@ -8,10 +8,10 @@ The result is a library of functions to automate common data processing tasks ac
 
 #### Also included:
 - A draft playbook for functionaly, idiomatic python functions and data pipelines
-  - Link: [Playbook](#Functional-Programming-Playbook-for-Python-Pipelines)
+  - Link: [Playbook](#functional-programming-playbook-for-python-pipelines)
 - Checklists for those who do not spend all day in python, including code review for functions, project setup, and validation.
-  - [Code Review for Function](review-checklist)
-  - [Project Setup](/docs/py_project_checklist.txt)
+  - [Code Review for Function](#review-checklist)
+  - [Project Setup](docs/py_project_checklist.txt)
   - Validation (PENDING)
 
 ### 🎯 Key Principles:
