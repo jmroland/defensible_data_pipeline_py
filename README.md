@@ -7,11 +7,11 @@ The goal is to model a defensible approach to data processing, and emphasize rea
 The result is a library of functions to automate common data processing tasks according to a playbook of best practices for writing idiomatic, functional Python code.
 
 #### Also included:
-- A draft playbook for functionaly, idiomatic python functions and data pipelines
+- A draft playbook for writing highly functional, idiomatic python functions and data pipelines
   - Link: [Playbook](#functional-programming-playbook-for-python-pipelines)
-- Checklists for those who do not spend all day in python, including code review for functions, project setup, and validation.
-  - [Code Review for Function](#review-checklist)
-  - [Project Setup](docs/py_project_checklist.txt)
+- Checklists to aid those who do not spend all day in python, including code review for functions, project setup, and validation.
+  - [Code Review for Function](#function-review-checklist)
+  - [PY Project Setup](docs/py_project_checklist.txt)
   - Validation (PENDING)
 
 ### 🎯 Key Principles:
@@ -168,7 +168,7 @@ Designed for data engineers, analysts, and functional programmers, this pipeline
 ---
 
 
-# Review Checklist
+# Function Review Checklist
 
 ### **Naming**
 - `filter_positive_growth`, not `fpg`.
