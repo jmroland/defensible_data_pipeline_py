@@ -72,7 +72,7 @@ def test_rule_violation():
     data = {"age": -5, "name": "Jo", "email": "user@example.com"}  # Invalid age, too short name
     with pytest.raises(ValidationError) as exc_info:
         validate(data)
-    
+
     errors = exc_info.value.errors
     assert "Age must be positive" in errors
     assert "Name must be at least 3 characters" in errors
@@ -82,7 +82,7 @@ def test_invalid_email():
     data = {"age": 30, "name": "John", "email": "userexample.com"}  # Missing "@"
     with pytest.raises(ValidationError) as exc_info:
         validate(data)
-    
+
     assert "Email must contain @" in exc_info.value.errors
 
 # ✅ 6. Test Rule Evaluation Exception (e.g., Invalid Condition)
@@ -96,5 +96,5 @@ def test_rule_exception():
     data = {"age": 25}
     with pytest.raises(ValidationError) as exc_info:
         bad_validate(data)
-    
+
     assert "Rule evaluation error" in str(exc_info.value.errors["Invalid rule"])

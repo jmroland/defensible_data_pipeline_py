@@ -1,0 +1,127 @@
+#!/bin/bash
+
+# Install Python & Git ########################################################
+# Update MacPorts
+sudo port selfupdate
+
+# Install Python 3.11 via MacPorts
+sudo port install python311
+
+# Set Python 3.11 as the default
+sudo port select --set python python311
+
+# Verify Python installation
+python --version
+
+# Install Git
+sudo port install git
+
+# Setup Project ###############################################################
+
+# Create project directory
+mkdir ~/my_project && cd ~/my_project
+
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate
+
+###############################################################################
+# Initialize Git Repository ###################################################
+git init
+
+# Create .gitignore file
+echo -e "venv/\n__pycache__/\n.DS_Store" > .gitignore
+
+# Commit initial setup
+git add .gitignore
+git commit -m "Initial commit with .gitignore"
+
+# Prompt for GitHub repository URL
+read -p "Enter your GitHub repository URL: " repo_url
+
+# Add remote repository and push initial commit
+git remote add origin "$repo_url"
+git branch -M main
+git push -u origin main
+
+# Existing Remove Repository ##################################################
+# # Prompt for the GitHub repository URL
+# read -p "Enter your GitHub repository URL: " repo_url
+
+# Extract the repository name from the URL
+# repo_name=$(basename -s .git "$repo_url")
+
+# Clone the remote repository
+# git clone "$repo_url"
+# cd "$repo_name" || { echo "Failed to enter directory $repo_name"; exit 1; }
+###############################################################################
+
+# Setup Requirements ##########################################################
+# Install example Python packages
+# pip install requests pandas
+
+# Install the 'pre-commit' package using pip
+pip install pre-commit
+
+# Install the 'pytest' package using pip
+pip install pytest
+
+# Freeze dependencies to requirements.txt
+pip freeze > requirements.txt
+
+# Commit requirements.txt
+git add requirements.txt
+git commit -m "Add requirements.txt"
+
+# Create project structure ####################################################
+
+# Create Makefile for setup and run tasks
+cat <<EOL > Makefile
+setup:
+	python -m venv venv
+	source venv/bin/activate && pip install -r requirements.txt
+
+run:
+	source venv/bin/activate && python src/main.py
+EOL
+
+# Setup folders
+# my_project/
+# ├── venv/
+# ├── src/
+# │   └── main.py
+# ├── tests/
+# ├── requirements.txt
+# ├── .gitignore
+# └── README.md
+# └── Makefile
+
+
+mkdir src tests
+touch src/main.py README.md
+
+# Create a '.pre-commit-config.yaml' file with desired hooks
+cat <<EOL > .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0  # Use the latest stable version
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+EOL
+
+# Install the pre-commit hooks into your Git hooks
+pre-commit install
+
+# Optionally, run the hooks against all files to ensure consistency
+pre-commit run --all-files
+
+echo "Pre-commit hooks have been set up successfully."
+
+# Final commit with project structure
+git add .
+git commit -m "Set up project structure"
+
+
+echo "Setup complete. Remember to activate your virtual environment with 'source venv/bin/activate' before working on your project."

@@ -140,7 +140,7 @@ def filter_with_details(df: pd.DataFrame, filter_condition: Callable[[pd.DataFra
         df (pd.DataFrame): The input DataFrame.
         filter_condition (Callable): A function that returns a Boolean Series indicating rows to keep.
         transformation_name (str): Name of the transformation (used for metadata tracking).
-    
+
     Returns:
         pd.DataFrame: Filtered DataFrame.
     """
@@ -182,8 +182,8 @@ def build_pipeline(pipeline_specs: List[Callable], metadata_manager: MetadataMan
 #     if row["start_value"] > 0:
 #         return (row["end_value"] - row["start_value"]) / row["start_value"]
 #     raise ValueError("Invalid start_value")
-# 
-# 
+#
+#
 # @manage_metadata(metadata_manager)
 # def calculate_growth_rate(df: pd.DataFrame, column_name: str) -> pd.DataFrame:
 #     """
@@ -192,29 +192,29 @@ def build_pipeline(pipeline_specs: List[Callable], metadata_manager: MetadataMan
 #     @handle_row_errors(on_error=metadata_manager.log_error, column_name=column_name, fallback_value=None)
 #     def safe_calculate_growth(row):
 #         return calculate_growth(row)
-# 
+#
 #     df[column_name] = df.apply(safe_calculate_growth, axis=1)
 #     return df
-# 
-# 
+#
+#
 # @manage_metadata(metadata_manager)
 # def filter_positive_growth(df: pd.DataFrame) -> pd.DataFrame:
 #     """
 #     Filters rows with positive growth rate.
-# 
+#
 #     Example:
 #         Input:
 #         id  growth_rate
 #         1   0.1
 #         2  -0.2
-# 
+#
 #         Output:
 #         id  growth_rate
 #         1   0.1
 #     """
 #     return df[df["growth_rate"] > 0]
-# 
-# 
+#
+#
 # # --- Example Usage ---
 # if __name__ == "__main__":
 #     # Sample data
@@ -223,10 +223,10 @@ def build_pipeline(pipeline_specs: List[Callable], metadata_manager: MetadataMan
 #         "start_value": [100, 0, 200],
 #         "end_value": [110, 20, 240],
 #     })
-# 
+#
 #     # Initialize MetadataManager
 #     metadata_manager = MetadataManager()
-# 
+#
 #     # Define transformations with partials
 #     calculate_growth_rate_partial = partial(calculate_growth_rate, column_name="growth_rate")
 #     aggregate_with_details_partial = partial(
@@ -238,18 +238,18 @@ def build_pipeline(pipeline_specs: List[Callable], metadata_manager: MetadataMan
 #             "growth_rate": "mean"
 #         }
 #     )
-# 
+#
 #     # Pipeline specs
 #     pipeline_specs = [
 #         calculate_growth_rate_partial,
 #         filter_positive_growth,
 #         aggregate_with_details_partial,
 #     ]
-# 
+#
 #     # Build and execute pipeline
 #     pipeline = build_pipeline(pipeline_specs, metadata_manager)
 #     result = pipeline(data)
-# 
+#
 #     # Output results
 #     print(result)
 #     print("\nLineage Metadata:")

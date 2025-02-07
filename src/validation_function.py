@@ -2,7 +2,7 @@ from functools import partial
 
 class ValidationError(Exception):
     """Exception raised for validation errors."""
-    
+
     def __init__(self, errors):
         """
         :param errors: Dictionary of validation failures {field_name: error_message}
